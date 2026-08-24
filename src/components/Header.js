@@ -5,8 +5,10 @@ import MicIcon from "../assets/mic.png";
 import Search from "./Search";
 import React from "react";
 import SidePanelExpanded from "./SidePanelExpanded";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSideBar } from "../redux-store/slice/appSlice";
 const Header = () => {
-  const [openSidePanel, setOpenSidePanel] = React.useState(false);
+  const dispatch = useDispatch();
   return (
     <div
       style={{
@@ -14,23 +16,31 @@ const Header = () => {
       }}
     >
       <img
-        style={{ height: "30px", paddingLeft: "12px", paddingTop: "10px" }}
+        style={{
+          height: "30px",
+          paddingLeft: "12px",
+          paddingTop: "10px",
+          cursor: "pointer",
+          position: "fixed",
+        }}
         alt="menu"
         src={Menu}
         onClick={() => {
-          setOpenSidePanel(!openSidePanel);
+          dispatch(toggleSideBar());
         }}
       />
-      <img
-        style={{
-          height: "60px",
-          paddingLeft: "20px",
-          paddingTop: "-10px",
-          marginTop: "-5px",
-        }}
-        alt="logo"
-        src={Logo}
-      />
+      <a href="/">
+        <img
+          style={{
+            height: "60px",
+            paddingLeft: "60px",
+            paddingTop: "-10px",
+            marginTop: "-5px",
+          }}
+          alt="logo"
+          src={Logo}
+        />
+      </a>
 
       <Search />
 
@@ -44,8 +54,6 @@ const Header = () => {
         alt="user icon"
         src={UserIcon}
       />
-
-      {openSidePanel && <SidePanelExpanded />}
     </div>
   );
 };

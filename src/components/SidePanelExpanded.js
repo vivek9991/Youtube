@@ -11,8 +11,7 @@ const SidePanelExpanded = () => {
         display: "flex",
         flexDirection: "column",
         position: "absolute",
-        left: "8px",
-        top: "63px",
+        top: "3px",
         height: "100vh",
         backgroundColor: "white",
       }}

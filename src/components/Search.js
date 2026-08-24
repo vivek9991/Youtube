@@ -10,10 +10,11 @@ const Search = () => {
           width: "28rem",
           marginTop: "7px",
           marginLeft: "300px",
-          border: "1px solid black",
+          border: "1px solid gray",
           borderRadius: "15px 0px 0px 15px",
           paddingLeft: "10px",
           fontSize: "15px",
+          color: "gray",
         }}
         placeholder="Search"
       />

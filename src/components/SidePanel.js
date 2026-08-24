@@ -4,7 +4,15 @@ import SubscriptionsIcon from "../assets/subscriptions.png";
 import ProfileIcon from "../assets/profile.png";
 const SidePanel = () => {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "15px",
+        position: "fixed",
+        top: "70px",
+      }}
+    >
       <img
         src={HomeIcon}
         alt="Home icon"
