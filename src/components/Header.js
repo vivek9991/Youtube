@@ -13,6 +13,10 @@ const Header = () => {
     <div
       style={{
         display: "flex",
+        position: "fixed",
+        backgroundColor: "white",
+        marginTop: "-8px",
+        zIndex: 100,
       }}
     >
       <img

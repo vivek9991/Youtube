@@ -10,6 +10,11 @@ const TagContainer = () => {
         gap: "10px",
         alignItems: "center",
         paddingLeft: "0px",
+        position: "fixed",
+        top: "43px",
+        backgroundColor: "white",
+        width: "100vw",
+        height: "50px",
       }}
     >
       <li>All</li>

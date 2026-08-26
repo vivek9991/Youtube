@@ -8,7 +8,7 @@ const VideosContainer = () => {
   return (
     <div
       style={{
-        padding: toggle ? "2px 10px 10px 190px" : "2px 10px 10px 80px",
+        padding: toggle ? "110px 10px 10px 190px" : "110px 10px 10px 80px",
       }}
     >
       <TagContainer />

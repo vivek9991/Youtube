@@ -2,13 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useSearchParams } from "react-router-dom";
 import { closeSideBar, toggleSideBar } from "../redux-store/slice/appSlice";
+import CommentsContainer from "./CommentsContainer";
 
 const VideoWatchContainer = () => {
   const dispatch = useDispatch();
   React.useEffect(() => {
     dispatch(closeSideBar());
   }, []);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
   const param = searchParams.get("v");
   return (
     <div
@@ -25,7 +26,8 @@ const VideoWatchContainer = () => {
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
-      ></iframe>
+      />
+      <CommentsContainer />
     </div>
   );
 };

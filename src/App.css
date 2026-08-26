@@ -12,3 +12,18 @@
   margin: 0;
   margin-bottom: 5px;
 }
+
+.suggestionItem {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  box-shadow: 2px 2px 5px gray;
+  border-radius: 10px;
+  position: fixed;
+  background-color: white;
+  left: 29.8rem;
+  top: 3rem;
+  width: 26.5rem;
+  padding: 20px;
+  z-index: 2000;
+}

@@ -1,6 +1,41 @@
 import React from "react";
 import SearchIcon from "../assets/search.png";
+import { useDispatch, useSelector } from "react-redux";
+import ShowSearchSuggestions from "./ShowSearchSuggestions";
+import { addToSearchSuggestions } from "../redux-store/slice/searchSlice";
+
 const Search = () => {
+  const [suggestionsHovered, setSuggestionsHovered] = React.useState(false);
+  const [searchKey, setSearchKey] = React.useState("");
+  const dispatch = useDispatch();
+  const searchSuggestionResults = useSelector(
+    (store) => store.searchSuggestions.searchSuggestions,
+  );
+
+  const getSuggestions = async () => {
+    const response = await fetch(
+      "https://proxy.corsfix.com/?https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=" +
+        searchKey,
+    );
+    const data = await response.json();
+    dispatch(
+      addToSearchSuggestions({
+        key: searchKey,
+        data: data[1],
+      }),
+    );
+  };
+
+  React.useEffect(() => {
+    const timer = setTimeout(() => {
+      searchKey.length > 0 &&
+        !searchSuggestionResults[searchKey] &&
+        getSuggestions();
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [searchKey]);
+
   return (
     <React.Fragment>
       <input
@@ -17,6 +52,10 @@ const Search = () => {
           color: "gray",
         }}
         placeholder="Search"
+        value={searchKey}
+        onChange={(e) => setSearchKey(e.target.value)}
+        onFocus={() => setSuggestionsHovered(true)}
+        onBlur={() => setSuggestionsHovered(false)}
       />
       <img
         style={{
@@ -29,6 +68,14 @@ const Search = () => {
         alt="search icon"
         src={SearchIcon}
       />
+      {searchKey.length > 0 &&
+        searchSuggestionResults[searchKey]?.length > 0 &&
+        suggestionsHovered && (
+          <ShowSearchSuggestions
+            setSuggestionsHovered={setSuggestionsHovered}
+            searchKey={searchKey}
+          />
+        )}
     </React.Fragment>
   );
 };
