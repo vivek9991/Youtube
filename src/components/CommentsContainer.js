@@ -17,8 +17,8 @@ const Comment = ({ comment }) => {
         </div>
       </div>
       <div style={{ marginLeft: "30px", borderLeft: "1px solid black" }}>
-        {comment.replies.map((c) => (
-          <Comment comment={c} />
+        {comment.replies.map((c, idx) => (
+          <Comment key={idx} comment={c} />
         ))}
       </div>
     </div>
@@ -26,17 +26,20 @@ const Comment = ({ comment }) => {
 };
 
 const CommentsList = ({ commentsData }) => {
-  return commentsData.map((comment) => <Comment comment={comment} />);
+  return commentsData.map((comment, idx) => (
+    <Comment key={idx} comment={comment} />
+  ));
 };
 
 const CommentsContainer = () => {
   return (
     <div
       style={{
-        width: "1000",
+        width: "990px",
         backgroundColor: "gray",
         borderRadius: "5px",
         padding: "5px",
+        marginTop: "-20px",
       }}
     >
       <p style={{ fontSize: "20px" }}>Comments</p>
